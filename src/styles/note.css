@@ -2,15 +2,27 @@
 .sticky-note {
   width: 200px;
   height: 200px;
-  background-color: #fdfd96; /* 泛黄的颜色 */
   border-radius: 3px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* 增加一点阴影 */
   padding: 15px;
   box-sizing: border-box;
   filter: sepia(0.1) saturate(1.1); /* 增加旧感和颜色饱和度 */
-  position: relative;
   overflow: hidden;
   will-change: transform; /* 优化动画性能 */
+  z-index: 10;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .sticky-note {
+    width: 140px;
+    height: 140px;
+    padding: 10px;
+  }
+
+  .note-text {
+    font-size: 20px;
+  }
 }
 
 /* 模拟纸张纹理 */
@@ -42,7 +54,7 @@
 }
 
 .note-text {
-  font-family: 'Ma Shan Zheng', cursive; /* 应用手写字体 */
+  font-family: 'Xiaolai SC', cursive; /* 应用手写字体 */
   font-size: 28px;
   color: #333;
   margin: 0;
@@ -55,4 +67,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* 水印样式 */
+.note-watermark {
+  position: absolute;
+  bottom: 8px;
+  right: 10px;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.15);
+  letter-spacing: 1px;
+  user-select: none;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* 移动端水印适配 */
+@media (max-width: 768px) {
+  .note-watermark {
+    font-size: 10px;
+    bottom: 6px;
+    right: 8px;
+  }
 }

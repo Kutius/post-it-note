@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/@chinese-fonts/xiaolai@3.0.0/dist/Xiaolai/result.css');
+
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import './note.css';
