@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>便利贴</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap'); /* 导入一个手写风格的字体 */
+
+        body {
+            margin: 0;
+            background-color: #f0f0f0; /* 浅灰色背景 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden; /* 防止滚动条 */
+            perspective: 1000px; /* 增加3D透视效果 */
+        }
+
+        .sticky-note-wrapper {
+            position: absolute;
+            /* 初始位置会由JS随机设置 */
+        }
+
+        .sticky-note {
+            width: 200px;
+            height: 200px;
+            background-color: #fdfd96; /* 泛黄的颜色 */
+            border-radius: 3px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* 增加一点阴影 */
+            padding: 15px;
+            box-sizing: border-box;
+            filter: sepia(0.1) saturate(1.1); /* 增加旧感和颜色饱和度 */
+            position: relative;
+            transform-origin: top center; /* 动画的旋转中心在顶部 */
+            animation: wind-sway 4s ease-in-out infinite alternate; /* 风吹动画 */
+            will-change: transform; /* 优化动画性能 */
+        }
+
+        /* 模拟纸张纹理和褶皱 */
+        .sticky-note::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1px);
+            background-size: 3px 3px; /* 细微的纸张纹理 */
+            opacity: 0.5;
+            pointer-events: none;
+            mix-blend-mode: multiply; /* 混合模式让纹理更自然 */
+        }
+
+        .sticky-note::after {
+            content: '';
+            position: absolute;
+            top: 5%;
+            left: 5%;
+            width: 90%;
+            height: 90%;
+            border: 1px solid rgba(0,0,0,0.05); /* 模拟一些边缘磨损 */
+            border-radius: 2px;
+            pointer-events: none;
+        }
+
+        .note-text {
+            font-family: 'Ma Shan Zheng', cursive; /* 应用手写字体 */
+            font-size: 28px;
+            color: #333;
+            margin: 0;
+            line-height: 1.3;
+            text-align: center;
+            user-select: none; /* 禁止选择文字 */
+        }
+
+        /* 风吹摇摆动画 */
+        @keyframes wind-sway {
+            0% {
+                transform: rotateZ(3deg) rotateX(0deg) translateY(0px);
+            }
+            25% {
+                transform: rotateZ(5deg) rotateX(5deg) translateY(5px);
+            }
+            50% {
+                transform: rotateZ(-2deg) rotateX(0deg) translateY(-2px);
+            }
+            75% {
+                transform: rotateZ(4deg) rotateX(-5deg) translateY(3px);
+            }
+            100% {
+                transform: rotateZ(3deg) rotateX(0deg) translateY(0px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sticky-note-wrapper">
+        <div class="sticky-note">
+            <p class="note-text">今天有没有好好吃饭</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const wrapper = document.querySelector('.sticky-note-wrapper');
+            const note = document.querySelector('.sticky-note');
+
+            // 随机设置初始位置和旋转
+            const randomTop = Math.random() * (window.innerHeight - note.offsetHeight - 50) + 25; // 避免贴边
+            const randomLeft = Math.random() * (window.innerWidth - note.offsetWidth - 50) + 25;
+            const randomZRotate = Math.random() * 10 - 5; // Z轴旋转 -5 到 5 度
+
+            wrapper.style.top = `${randomTop}px`;
+            wrapper.style.left = `${randomLeft}px`;
+            wrapper.style.transform = `rotateZ(${randomZRotate}deg)`;
+
+            // 给动画增加一些随机延迟和持续时间，使多个便利贴的动画不同步
+            note.style.animationDelay = `${Math.random() * 2}s`;
+            note.style.animationDuration = `${Math.random() * 3 + 3}s`; // 3到6秒
+        });
+    </script>
+</body>
+</html>
