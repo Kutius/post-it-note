@@ -8,6 +8,7 @@ import {
 } from '@tanstack/react-router'
 
 import { NotFound } from '~/components/NotFound'
+import { SITE_NAME } from '~/constants'
 import appCss from '../styles/app.css?url'
 
 export const Route = createRootRoute({
@@ -21,7 +22,7 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'TanStack Start Starter',
+        title: SITE_NAME,
       },
     ],
     links: [

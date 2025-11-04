@@ -1,3 +1,5 @@
+export const SITE_NAME = 'Love Notes'
+
 export const NOTE_COLORS = [
   '#fdfd96', // 经典黄色
   '#ffb3ba', // 粉红色

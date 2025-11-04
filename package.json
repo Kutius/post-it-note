@@ -1,9 +1,9 @@
 {
-  "name": "tanstack-start-template",
+  "name": "love-notes",
   "type": "module",
   "version": "1.0.0",
   "packageManager": "pnpm@10.19.0",
-  "description": "TanStack Start Starter",
+  "description": "Love Notes",
   "author": "",
   "license": "MIT",
   "keywords": [],
